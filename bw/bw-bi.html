@@ -258,15 +258,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(elections, <span class="fu">aes</span>(<span class="at">x =</span> repub_pct_20, <span class="at">fill =</span> historical)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"purple"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> historical)<span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Republican Vote Percentage (2020)"</span>, <span class="at">y =</span> <span class="st">"Density"</span>)<span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">labs</span>( <span class="at">title =</span> <span class="st">"Frequency of Hikes at Different Elevations"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="at">caption =</span> <span class="st">"Plot created by [Isa Chen] Feb 23"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(elections, <span class="fu">aes</span>(<span class="at">x =</span> repub_pct_20, <span class="at">fill =</span> historical)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"purple"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> historical)<span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Republican Vote Percentage (2020)"</span>, <span class="at">y =</span> <span class="st">"Density"</span>)<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">labs</span>( <span class="at">title =</span> <span class="st">"Frequency of Hikes at Different Elevations"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="at">caption =</span> <span class="st">"Plot created by [Isa Chen] Feb 23"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="bw-bi_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -909,27 +910,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="an">title:</span><span class="co"> "Bivariate Viz"</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">---</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>Use this file to generate a professional looking **bivariate** visualization.  The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="in">```{r}</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>elections <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/election_2020_county.csv"</span>)</span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="in">```</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a></span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="in">```{r}</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="fu">ggplot</span>(elections, <span class="fu">aes</span>(<span class="at">x =</span> repub_pct_20, <span class="at">fill =</span> historical)) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"purple"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> historical)<span class="sc">+</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Republican Vote Percentage (2020)"</span>, <span class="at">y =</span> <span class="st">"Density"</span>)<span class="sc">+</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a>  <span class="fu">labs</span>( <span class="at">title =</span> <span class="st">"Frequency of Hikes at Different Elevations"</span>,</span>
-<span id="cb4-24"><a href="#cb4-24"></a>  <span class="at">caption =</span> <span class="st">"Plot created by [Isa Chen] Feb 23"</span>)</span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="an">title:</span><span class="co"> "Bivariate Viz"</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">---</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>Use this file to generate a professional looking **bivariate** visualization.  The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="in">```{r}</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>elections <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/election_2020_county.csv"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="in">```</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="in">```{r}</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="fu">ggplot</span>(elections, <span class="fu">aes</span>(<span class="at">x =</span> repub_pct_20, <span class="at">fill =</span> historical)) <span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"purple"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> historical)<span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Republican Vote Percentage (2020)"</span>, <span class="at">y =</span> <span class="st">"Density"</span>)<span class="sc">+</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>  <span class="fu">labs</span>( <span class="at">title =</span> <span class="st">"Frequency of Hikes at Different Elevations"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25"></a>  <span class="at">caption =</span> <span class="st">"Plot created by [Isa Chen] Feb 23"</span>)</span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
