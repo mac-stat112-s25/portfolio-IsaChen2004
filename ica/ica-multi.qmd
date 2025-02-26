@@ -277,7 +277,6 @@ There's no end to the number and type of visualizations you *could* make. And it
 
 ## Exercises (required)
 
-{{< include activity-instructions.qmd >}}
 
 ### The story {-}
 

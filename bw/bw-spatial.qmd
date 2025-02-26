@@ -6,7 +6,31 @@ Use this file to generate a professional looking **spatial** visualization.  The
 
 
 ```{r}
+library(tidyverse)
+library(openintro)
 starbucks <- read.csv("https://mac-stat.github.io/data/starbucks.csv")
+starbucks_mn <- starbucks |>   
+  filter(Country == "US", State.Province == "MN")
+library(tidyverse)
+```
+
+```{r}
+starbucks_us_by_state <- starbucks |>
+  filter(Country == "US") |>
+  count(State.Province) |>
+  mutate(state_name = str_to_lower(abbr2state(State.Province)))
+
+census_pop_est_2018 <- read_csv("https://mac-stat.github.io/data/us_census_2018_state_pop_est.csv") |>
+  separate(state, into = c("dot", "state"), extra = "merge") |>
+  select(-dot) |>
+  mutate(state = str_to_lower(state))
+
+starbucks_with_2018_pop_est <-
+  starbucks_us_by_state |>
+  left_join(census_pop_est_2018,
+    by = c("state_name" = "state")
+  ) |>
+  mutate(starbucks_per_10000 = (n / est_pop_2018) * 10000)
 ```
 
 ```{r}

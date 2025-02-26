@@ -6,6 +6,8 @@ Use this file to generate a professional looking **bivariate** visualization.  T
 
 ```{r}
 elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+library(tidyverse)
+library(ggplot2)
 ```
 
 

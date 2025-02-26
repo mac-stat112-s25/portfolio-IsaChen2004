@@ -18,7 +18,7 @@ Let's dig into the `hikes` data, starting with the `elevation` and difficulty `r
 
 ```{r}
 #| eval: true
-
+library(ggplot2)
 head(hikes)
 ```
 
