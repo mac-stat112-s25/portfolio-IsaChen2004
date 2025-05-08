@@ -310,39 +310,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="part-a" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-a">Part a</h4>
 <p>Define two new datasets, with different students and courses:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>students_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="at">student =</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>),</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"COMP 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"POLI 101"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a>)</span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># Check it out</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>students_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  student    class
 1       D COMP 101
 2       E BIOL 101
 3       F POLI 101</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>enrollments_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="at">course =</span> <span class="fu">c</span>(<span class="st">"ART 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"COMP 101"</span>),</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">enrollment =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">19</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># Check it out</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>enrollments_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    course enrollment
 1  ART 101         18
@@ -351,16 +324,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>To connect the course enrollments to the students’ courses, try do a <code>left_join()</code>. You get an error! Identify the problem by reviewing the error message and the datasets we’re trying to join.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># eval = FALSE: don't evaluate this chunk when knitting. it produces an error.</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#students_2 |&gt; </span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#  left_join(enrollments_2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="part-b" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-b">Part b</h4>
 <p>The problem is that course name, the <strong>key</strong> or variable that links these two datasets, is labeled differently: <code>class</code> in the <code>students_2</code> data and <code>course</code> in the <code>enrollments_2</code> data. Thus we have to specify these keys in our code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>students_2 <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">left_join</span>(enrollments_2, <span class="fu">join_by</span>(class <span class="sc">==</span> course))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  student    class enrollment
 1       D COMP 101         19
@@ -368,25 +334,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3       F POLI 101         NA</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># The order of the keys is important:</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># join_by("left data key" == "right data key")</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co"># The order is mixed up here, thus we get an error:</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>students_2 <span class="sc">|&gt;</span> </span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co">#  left_join(enrollments_2, join_by(course == class))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="part-c" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-c">Part c</h4>
 <p>Define another set of fake data which adds grade information:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Add student grades in each course</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>students_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="at">student =</span> <span class="fu">c</span>(<span class="st">"Y"</span>, <span class="st">"Y"</span>, <span class="st">"Z"</span>, <span class="st">"Z"</span>),</span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"COMP 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"POLI 101"</span>, <span class="st">"COMP 101"</span>),</span>
-<span id="cb11-5"><a href="#cb11-5"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"S"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a>)</span>
-<span id="cb11-7"><a href="#cb11-7"></a></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co"># Check it out</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a>students_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  student    class grade
 1       Y COMP 101     B
@@ -394,15 +344,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3       Z POLI 101     C
 4       Z COMP 101     A</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Add average grades in each course</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>enrollments_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"ART 101"</span>, <span class="st">"BIOL 101"</span>,<span class="st">"COMP 101"</span>),</span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"A-"</span>),</span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="at">enrollment =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">19</span>)</span>
-<span id="cb13-6"><a href="#cb13-6"></a>)</span>
-<span id="cb13-7"><a href="#cb13-7"></a></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="co"># Check it out</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>enrollments_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     class grade enrollment
 1  ART 101     B         20
@@ -412,11 +353,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Try doing a <code>left_join()</code> to link the students’ classes to their enrollment info. Did this work? Try and figure out the culprit by examining the output.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>students_3 <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">left_join</span>(enrollments_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Joining with `by = join_by(class, grade)`</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  student    class grade enrollment
 1       Y COMP 101     B         NA
@@ -428,8 +364,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="part-d" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-d">Part d</h4>
 <p>The issue here is that our datasets have <em>2</em> column names in common: <code>class</code> and <code>grade</code>. BUT <code>grade</code> is measuring 2 different things here: individual student grades in <code>students_3</code> and average student grades in <code>enrollments_3</code>. Thus it doesn’t make sense to try to join the datasets with respect to this variable. We can again solve this by specifying that we want to join the datasets using the <code>class</code> variable as a <em>key</em>. What are <code>grade.x</code> and <code>grade.y</code>?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>students_3 <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">left_join</span>(enrollments_3, <span class="fu">join_by</span>(class <span class="sc">==</span> class))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  student    class grade.x grade.y enrollment
 1       Y COMP 101       B      A-         19
@@ -441,13 +375,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section></section><section id="exercise-2-more-small-practice" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="exercise-2-more-small-practice">Exercise 2: More small practice</h3>
 <p>Before applying these ideas to bigger datasets, let’s practice identifying which join is appropriate in different scenarios. Define the following fake data on <code>voters</code> (people who <em>have</em> voted) and <code>contact</code> info for voting age adults (people who <em>could</em> vote):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># People who have voted</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>voters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>, <span class="st">"G"</span>),</span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">times_voted =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">17</span>, <span class="dv">6</span>, <span class="dv">20</span>)</span>
-<span id="cb20-5"><a href="#cb20-5"></a>)</span>
-<span id="cb20-6"><a href="#cb20-6"></a></span>
-<span id="cb20-7"><a href="#cb20-7"></a>voters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id times_voted
 1  A           2
@@ -456,14 +383,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4  F           6
 5  G          20</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Contact info for voting age adults</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>contact <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="at">address =</span> <span class="fu">c</span>(<span class="st">"summit"</span>, <span class="st">"grand"</span>, <span class="st">"snelling"</span>, <span class="st">"fairview"</span>),</span>
-<span id="cb22-5"><a href="#cb22-5"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">89</span>, <span class="dv">43</span>, <span class="dv">38</span>)</span>
-<span id="cb22-6"><a href="#cb22-6"></a>)</span>
-<span id="cb22-7"><a href="#cb22-7"></a></span>
-<span id="cb22-8"><a href="#cb22-8"></a>contact</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  name  address age
 1    A   summit  24
@@ -476,20 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>What dataset goes on the left?</li>
 <li>What do you want the resulting dataset to look like? How many rows and columns will it have?</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># 1. We want contact info for people who HAVEN'T voted</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a></span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># 2. We want contact info for people who HAVE voted</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a></span>
-<span id="cb24-6"><a href="#cb24-6"></a></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="co"># 3. We want any data available on each person</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a></span>
-<span id="cb24-9"><a href="#cb24-9"></a></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="co"># 4. When possible, we want to add contact info to the voting roster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section id="exercise-3-bigger-datasets" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="exercise-3-bigger-datasets">Exercise 3: Bigger datasets</h3>
+</ul></section><section id="exercise-3-bigger-datasets" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="exercise-3-bigger-datasets">Exercise 3: Bigger datasets</h3>
 <p>Let’s apply these ideas to some bigger datasets. In <code>grades</code>, each row is a student-class pair with information on:</p>
 <ul>
 <li>
@@ -500,10 +406,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>sessionID</code> = an identifier of the class section</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Get rid of some duplicate rows!</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>grades <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/grades.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">distinct</span>(sid, sessionID, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="fu">head</span>(grades)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     sid grade   sessionID
 1 S31185    D+ session1784
@@ -541,20 +443,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Use R code to take a quick glance at the data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># How many observations (rows) and variables (columns) are there in the grades data?</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="co"># How many observations (rows) and variables (columns) are there in the courses data?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="exercise-4-class-size" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="exercise-4-class-size">Exercise 4: Class size</h3>
 <p>How big are the classes?</p>
 <section id="part-a-1" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-a-1">Part a</h4>
 <p>Before digging in, note that some courses are listed twice in the <code>courses</code> data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>courses <span class="sc">|&gt;</span> </span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">count</span>(sessionID) <span class="sc">|&gt;</span> </span>
-<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     sessionID n
 1  session2047 2
@@ -584,8 +477,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If we pick out just 1 of these, we learn that some courses are cross-listed in multiple departments:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>courses <span class="sc">|&gt;</span> </span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">filter</span>(sessionID <span class="sc">==</span> <span class="st">"session2047"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    sessionID dept level    sem enroll     iid
 1 session2047    g   100 FA2001     12 inst436
@@ -593,14 +484,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>For our class size exploration, obtain the <em>total</em> enrollments in each <code>sessionID</code>, combining any cross-listed sections. Save this as <code>courses_combined</code>. NOTE: There’s no joining to do here!</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># courses_combined &lt;- courses |&gt; </span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="co">#   ___(sessionID) |&gt; </span></span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="co">#   ___(enroll = sum(___))</span></span>
-<span id="cb33-4"><a href="#cb33-4"></a></span>
-<span id="cb33-5"><a href="#cb33-5"></a><span class="co"># Check that this has 1695 rows and 2 columns</span></span>
-<span id="cb33-6"><a href="#cb33-6"></a><span class="co"># dim(courses_combined)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section><section id="part-b-1" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-b-1">Part b</h4>
 <p>Let’s first examine the question of class size from the <em>administration</em>’s viewpoint. To this end, calculate the median class size across all class sections. (The median is the <em>middle</em> or 50th percentile. Unlike the <em>mean</em>, it’s not skewed by outliers.) THINK FIRST:</p>
 <ul>
@@ -615,19 +498,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Do you have to do any joining? If so, which dataset will go on the left, i.e.&nbsp;which dataset includes your primary observations of interest? Which join function will you need?</li>
 </ul></section><section id="part-d-1" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-d-1">Part d</h4>
 <p>The median class size varies from student to student. To get a sense for the typical student experience and range in student experiences, construct and discuss a histogram of the median class sizes experienced by the students.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># ggplot(student_class_size, aes(x = ___)) + </span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="co">#   geom___()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section></section><section id="exercise-5-narrowing-in-on-classes" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="exercise-5-narrowing-in-on-classes">Exercise 5: Narrowing in on classes</h3>
 <section id="part-a-2" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-a-2">Part a</h4>
 <p>Show data on the students that enrolled in <code>session1986</code>. THINK FIRST: Which of the 2 datasets do you need to answer this question? One? Both?</p>
 </section><section id="part-b-2" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="part-b-2">Part b</h4>
 <p>Below is a dataset with all courses in department E:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>dept_E <span class="ot">&lt;-</span> courses <span class="sc">|&gt;</span> </span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">filter</span>(dept <span class="sc">==</span> <span class="st">"E"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>What students enrolled in classes in department E? (We just want info on the students, not the classes.)</p>
 </section></section><section id="exercise-6-all-the-wrangling" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="exercise-6-all-the-wrangling">Exercise 6: All the wrangling</h3>
 <p>Use all of your wrangling skills to answer the following prompts! THINK FIRST:</p>
@@ -636,12 +511,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>You’ll need an extra table to convert grades to grade point averages:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>gpa_conversion <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb36-2"><a href="#cb36-2"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"A+"</span>, <span class="st">"A"</span>, <span class="st">"A-"</span>, <span class="st">"B+"</span>, <span class="st">"B"</span>, <span class="st">"B-"</span>, <span class="st">"C+"</span>, <span class="st">"C"</span>, <span class="st">"C-"</span>, <span class="st">"D+"</span>, <span class="st">"D"</span>, <span class="st">"D-"</span>, <span class="st">"NC"</span>, <span class="st">"AU"</span>, <span class="st">"S"</span>), </span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="at">gp =</span> <span class="fu">c</span>(<span class="fl">4.3</span>, <span class="dv">4</span>, <span class="fl">3.7</span>, <span class="fl">3.3</span>, <span class="dv">3</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>, <span class="dv">2</span>, <span class="fl">1.7</span>, <span class="fl">1.3</span>, <span class="dv">1</span>, <span class="fl">0.7</span>, <span class="dv">0</span>, <span class="cn">NA</span>, <span class="cn">NA</span>)</span>
-<span id="cb36-4"><a href="#cb36-4"></a>)</span>
-<span id="cb36-5"><a href="#cb36-5"></a></span>
-<span id="cb36-6"><a href="#cb36-6"></a>gpa_conversion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 2
    grade    gp
@@ -1309,343 +1178,343 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb38" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1"></a><span class="co">---</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="an">title:</span><span class="co"> "joining"</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb38-4"><a href="#cb38-4"></a><span class="co">---</span></span>
-<span id="cb38-5"><a href="#cb38-5"></a></span>
-<span id="cb38-6"><a href="#cb38-6"></a><span class="fu">## Exercises</span></span>
-<span id="cb38-7"><a href="#cb38-7"></a></span>
-<span id="cb38-8"><a href="#cb38-8"></a><span class="fu">### Exercise 1: Where are my keys? {.unnumbered}</span></span>
-<span id="cb38-9"><a href="#cb38-9"></a></span>
-<span id="cb38-10"><a href="#cb38-10"></a><span class="fu">#### Part a {.unnumbered}</span></span>
-<span id="cb38-11"><a href="#cb38-11"></a></span>
-<span id="cb38-12"><a href="#cb38-12"></a>Define two new datasets, with different students and courses:</span>
-<span id="cb38-13"><a href="#cb38-13"></a></span>
-<span id="cb38-16"><a href="#cb38-16"></a><span class="in">```{r}</span></span>
-<span id="cb38-17"><a href="#cb38-17"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb38-18"><a href="#cb38-18"></a>students_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-19"><a href="#cb38-19"></a>  <span class="at">student =</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>),</span>
-<span id="cb38-20"><a href="#cb38-20"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"COMP 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"POLI 101"</span>)</span>
-<span id="cb38-21"><a href="#cb38-21"></a>)</span>
-<span id="cb38-22"><a href="#cb38-22"></a></span>
-<span id="cb38-23"><a href="#cb38-23"></a><span class="co"># Check it out</span></span>
-<span id="cb38-24"><a href="#cb38-24"></a>students_2</span>
-<span id="cb38-25"><a href="#cb38-25"></a></span>
-<span id="cb38-26"><a href="#cb38-26"></a>enrollments_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-27"><a href="#cb38-27"></a>  <span class="at">course =</span> <span class="fu">c</span>(<span class="st">"ART 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"COMP 101"</span>),</span>
-<span id="cb38-28"><a href="#cb38-28"></a>  <span class="at">enrollment =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">19</span>)</span>
-<span id="cb38-29"><a href="#cb38-29"></a>)</span>
-<span id="cb38-30"><a href="#cb38-30"></a></span>
-<span id="cb38-31"><a href="#cb38-31"></a><span class="co"># Check it out</span></span>
-<span id="cb38-32"><a href="#cb38-32"></a>enrollments_2</span>
-<span id="cb38-33"><a href="#cb38-33"></a><span class="in">```</span></span>
-<span id="cb38-34"><a href="#cb38-34"></a></span>
-<span id="cb38-35"><a href="#cb38-35"></a>To connect the course enrollments to the students' courses, try do a <span class="in">`left_join()`</span>. You get an error! Identify the problem by reviewing the error message and the datasets we're trying to join.</span>
-<span id="cb38-36"><a href="#cb38-36"></a></span>
-<span id="cb38-37"><a href="#cb38-37"></a><span class="in">```{r eval = FALSE}</span></span>
-<span id="cb38-38"><a href="#cb38-38"></a><span class="in"># eval = FALSE: don't evaluate this chunk when knitting. it produces an error.</span></span>
-<span id="cb38-39"><a href="#cb38-39"></a><span class="in">#students_2 |&gt; </span></span>
-<span id="cb38-40"><a href="#cb38-40"></a><span class="in">#  left_join(enrollments_2)</span></span>
-<span id="cb38-41"><a href="#cb38-41"></a><span class="in">```</span></span>
-<span id="cb38-42"><a href="#cb38-42"></a></span>
-<span id="cb38-43"><a href="#cb38-43"></a><span class="fu">#### Part b {.unnumbered}</span></span>
-<span id="cb38-44"><a href="#cb38-44"></a></span>
-<span id="cb38-45"><a href="#cb38-45"></a>The problem is that course name, the **key** or variable that links these two datasets, is labeled differently: <span class="in">`class`</span> in the <span class="in">`students_2`</span> data and <span class="in">`course`</span> in the <span class="in">`enrollments_2`</span> data. Thus we have to specify these keys in our code:</span>
-<span id="cb38-46"><a href="#cb38-46"></a></span>
-<span id="cb38-49"><a href="#cb38-49"></a><span class="in">```{r}</span></span>
-<span id="cb38-50"><a href="#cb38-50"></a>students_2 <span class="sc">|&gt;</span> </span>
-<span id="cb38-51"><a href="#cb38-51"></a>  <span class="fu">left_join</span>(enrollments_2, <span class="fu">join_by</span>(class <span class="sc">==</span> course))</span>
-<span id="cb38-52"><a href="#cb38-52"></a><span class="in">```</span></span>
-<span id="cb38-53"><a href="#cb38-53"></a></span>
-<span id="cb38-56"><a href="#cb38-56"></a><span class="in">```{r}</span></span>
-<span id="cb38-57"><a href="#cb38-57"></a><span class="co">#| eval: false  # keep this false since it will produce an error</span></span>
-<span id="cb38-58"><a href="#cb38-58"></a></span>
-<span id="cb38-59"><a href="#cb38-59"></a><span class="co"># The order of the keys is important:</span></span>
-<span id="cb38-60"><a href="#cb38-60"></a><span class="co"># join_by("left data key" == "right data key")</span></span>
-<span id="cb38-61"><a href="#cb38-61"></a><span class="co"># The order is mixed up here, thus we get an error:</span></span>
-<span id="cb38-62"><a href="#cb38-62"></a>students_2 <span class="sc">|&gt;</span> </span>
-<span id="cb38-63"><a href="#cb38-63"></a><span class="co">#  left_join(enrollments_2, join_by(course == class))</span></span>
-<span id="cb38-64"><a href="#cb38-64"></a><span class="in">```</span></span>
-<span id="cb38-65"><a href="#cb38-65"></a></span>
-<span id="cb38-66"><a href="#cb38-66"></a><span class="fu">#### Part c {.unnumbered}</span></span>
-<span id="cb38-67"><a href="#cb38-67"></a></span>
-<span id="cb38-68"><a href="#cb38-68"></a>Define another set of fake data which adds grade information:</span>
-<span id="cb38-69"><a href="#cb38-69"></a></span>
-<span id="cb38-72"><a href="#cb38-72"></a><span class="in">```{r}</span></span>
-<span id="cb38-73"><a href="#cb38-73"></a><span class="co"># Add student grades in each course</span></span>
-<span id="cb38-74"><a href="#cb38-74"></a>students_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-75"><a href="#cb38-75"></a>  <span class="at">student =</span> <span class="fu">c</span>(<span class="st">"Y"</span>, <span class="st">"Y"</span>, <span class="st">"Z"</span>, <span class="st">"Z"</span>),</span>
-<span id="cb38-76"><a href="#cb38-76"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"COMP 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"POLI 101"</span>, <span class="st">"COMP 101"</span>),</span>
-<span id="cb38-77"><a href="#cb38-77"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"S"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>)</span>
-<span id="cb38-78"><a href="#cb38-78"></a>)</span>
-<span id="cb38-79"><a href="#cb38-79"></a></span>
-<span id="cb38-80"><a href="#cb38-80"></a><span class="co"># Check it out</span></span>
-<span id="cb38-81"><a href="#cb38-81"></a>students_3</span>
-<span id="cb38-82"><a href="#cb38-82"></a></span>
-<span id="cb38-83"><a href="#cb38-83"></a><span class="co"># Add average grades in each course</span></span>
-<span id="cb38-84"><a href="#cb38-84"></a>enrollments_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-85"><a href="#cb38-85"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"ART 101"</span>, <span class="st">"BIOL 101"</span>,<span class="st">"COMP 101"</span>),</span>
-<span id="cb38-86"><a href="#cb38-86"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"A-"</span>),</span>
-<span id="cb38-87"><a href="#cb38-87"></a>  <span class="at">enrollment =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">19</span>)</span>
-<span id="cb38-88"><a href="#cb38-88"></a>)</span>
-<span id="cb38-89"><a href="#cb38-89"></a></span>
-<span id="cb38-90"><a href="#cb38-90"></a><span class="co"># Check it out</span></span>
-<span id="cb38-91"><a href="#cb38-91"></a>enrollments_3</span>
-<span id="cb38-92"><a href="#cb38-92"></a><span class="in">```</span></span>
-<span id="cb38-93"><a href="#cb38-93"></a></span>
-<span id="cb38-94"><a href="#cb38-94"></a>Try doing a <span class="in">`left_join()`</span> to link the students' classes to their enrollment info. Did this work? Try and figure out the culprit by examining the output.</span>
-<span id="cb38-95"><a href="#cb38-95"></a></span>
-<span id="cb38-98"><a href="#cb38-98"></a><span class="in">```{r}</span></span>
-<span id="cb38-99"><a href="#cb38-99"></a>students_3 <span class="sc">|&gt;</span> </span>
-<span id="cb38-100"><a href="#cb38-100"></a>  <span class="fu">left_join</span>(enrollments_3)</span>
-<span id="cb38-101"><a href="#cb38-101"></a><span class="in">```</span></span>
-<span id="cb38-102"><a href="#cb38-102"></a></span>
-<span id="cb38-103"><a href="#cb38-103"></a><span class="fu">#### Part d {.unnumbered}</span></span>
-<span id="cb38-104"><a href="#cb38-104"></a></span>
-<span id="cb38-105"><a href="#cb38-105"></a>The issue here is that our datasets have *2* column names in common: `class` and `grade`. BUT `grade` is measuring 2 different things here: individual student grades in `students_3` and average student grades in `enrollments_3`. Thus it doesn't make sense to try to join the datasets with respect to this variable. We can again solve this by specifying that we want to join the datasets using the `class` variable as a *key*. What are <span class="in">`grade.x`</span> and <span class="in">`grade.y`</span>?</span>
-<span id="cb38-106"><a href="#cb38-106"></a></span>
-<span id="cb38-109"><a href="#cb38-109"></a><span class="in">```{r}</span></span>
-<span id="cb38-110"><a href="#cb38-110"></a>students_3 <span class="sc">|&gt;</span> </span>
-<span id="cb38-111"><a href="#cb38-111"></a>  <span class="fu">left_join</span>(enrollments_3, <span class="fu">join_by</span>(class <span class="sc">==</span> class))</span>
-<span id="cb38-112"><a href="#cb38-112"></a><span class="in">```</span></span>
-<span id="cb38-113"><a href="#cb38-113"></a></span>
-<span id="cb38-114"><a href="#cb38-114"></a></span>
-<span id="cb38-115"><a href="#cb38-115"></a><span class="fu">### Exercise 2: More small practice {.unnumbered}</span></span>
-<span id="cb38-116"><a href="#cb38-116"></a></span>
-<span id="cb38-117"><a href="#cb38-117"></a>Before applying these ideas to bigger datasets, let's practice identifying which join is appropriate in different scenarios. Define the following fake data on <span class="in">`voters`</span> (people who *have* voted) and `contact` info for voting age adults (people who *could* vote):</span>
-<span id="cb38-118"><a href="#cb38-118"></a></span>
-<span id="cb38-121"><a href="#cb38-121"></a><span class="in">```{r}</span></span>
-<span id="cb38-122"><a href="#cb38-122"></a><span class="co"># People who have voted</span></span>
-<span id="cb38-123"><a href="#cb38-123"></a>voters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-124"><a href="#cb38-124"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>, <span class="st">"G"</span>),</span>
-<span id="cb38-125"><a href="#cb38-125"></a>  <span class="at">times_voted =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">17</span>, <span class="dv">6</span>, <span class="dv">20</span>)</span>
-<span id="cb38-126"><a href="#cb38-126"></a>)</span>
-<span id="cb38-127"><a href="#cb38-127"></a></span>
-<span id="cb38-128"><a href="#cb38-128"></a>voters</span>
-<span id="cb38-129"><a href="#cb38-129"></a></span>
-<span id="cb38-130"><a href="#cb38-130"></a><span class="co"># Contact info for voting age adults</span></span>
-<span id="cb38-131"><a href="#cb38-131"></a>contact <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-132"><a href="#cb38-132"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</span>
-<span id="cb38-133"><a href="#cb38-133"></a>  <span class="at">address =</span> <span class="fu">c</span>(<span class="st">"summit"</span>, <span class="st">"grand"</span>, <span class="st">"snelling"</span>, <span class="st">"fairview"</span>),</span>
-<span id="cb38-134"><a href="#cb38-134"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">89</span>, <span class="dv">43</span>, <span class="dv">38</span>)</span>
-<span id="cb38-135"><a href="#cb38-135"></a>)</span>
-<span id="cb38-136"><a href="#cb38-136"></a></span>
-<span id="cb38-137"><a href="#cb38-137"></a>contact</span>
-<span id="cb38-138"><a href="#cb38-138"></a><span class="in">```</span></span>
-<span id="cb38-139"><a href="#cb38-139"></a></span>
-<span id="cb38-140"><a href="#cb38-140"></a>Use the appropriate join for each prompt below. In each case, think before you type:</span>
-<span id="cb38-141"><a href="#cb38-141"></a></span>
-<span id="cb38-142"><a href="#cb38-142"></a><span class="ss">-   </span>What dataset goes on the left?</span>
-<span id="cb38-143"><a href="#cb38-143"></a><span class="ss">-   </span>What do you want the resulting dataset to look like? How many rows and columns will it have?</span>
-<span id="cb38-144"><a href="#cb38-144"></a></span>
-<span id="cb38-147"><a href="#cb38-147"></a><span class="in">```{r}</span></span>
-<span id="cb38-148"><a href="#cb38-148"></a><span class="co"># 1. We want contact info for people who HAVEN'T voted</span></span>
-<span id="cb38-149"><a href="#cb38-149"></a></span>
-<span id="cb38-150"><a href="#cb38-150"></a></span>
-<span id="cb38-151"><a href="#cb38-151"></a><span class="co"># 2. We want contact info for people who HAVE voted</span></span>
-<span id="cb38-152"><a href="#cb38-152"></a></span>
-<span id="cb38-153"><a href="#cb38-153"></a></span>
-<span id="cb38-154"><a href="#cb38-154"></a><span class="co"># 3. We want any data available on each person</span></span>
-<span id="cb38-155"><a href="#cb38-155"></a></span>
-<span id="cb38-156"><a href="#cb38-156"></a></span>
-<span id="cb38-157"><a href="#cb38-157"></a><span class="co"># 4. When possible, we want to add contact info to the voting roster</span></span>
-<span id="cb38-158"><a href="#cb38-158"></a></span>
-<span id="cb38-159"><a href="#cb38-159"></a></span>
-<span id="cb38-160"><a href="#cb38-160"></a><span class="in">```</span></span>
-<span id="cb38-161"><a href="#cb38-161"></a></span>
-<span id="cb38-162"><a href="#cb38-162"></a></span>
-<span id="cb38-163"><a href="#cb38-163"></a></span>
-<span id="cb38-164"><a href="#cb38-164"></a><span class="fu">### Exercise 3: Bigger datasets {.unnumbered}</span></span>
-<span id="cb38-165"><a href="#cb38-165"></a></span>
-<span id="cb38-166"><a href="#cb38-166"></a>Let's apply these ideas to some bigger datasets. In <span class="in">`grades`</span>, each row is a student-class pair with information on:</span>
-<span id="cb38-167"><a href="#cb38-167"></a></span>
-<span id="cb38-168"><a href="#cb38-168"></a><span class="ss">-   </span><span class="in">`sid`</span> = student ID</span>
-<span id="cb38-169"><a href="#cb38-169"></a><span class="ss">-   </span><span class="in">`grade`</span> = student's grade</span>
-<span id="cb38-170"><a href="#cb38-170"></a><span class="ss">-   </span><span class="in">`sessionID`</span> = an identifier of the class section</span>
-<span id="cb38-171"><a href="#cb38-171"></a></span>
-<span id="cb38-174"><a href="#cb38-174"></a><span class="in">```{r}</span></span>
-<span id="cb38-175"><a href="#cb38-175"></a><span class="co"># Get rid of some duplicate rows!</span></span>
-<span id="cb38-176"><a href="#cb38-176"></a>grades <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/grades.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb38-177"><a href="#cb38-177"></a>  <span class="fu">distinct</span>(sid, sessionID, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb38-178"><a href="#cb38-178"></a><span class="fu">head</span>(grades)</span>
-<span id="cb38-179"><a href="#cb38-179"></a><span class="in">```</span></span>
-<span id="cb38-180"><a href="#cb38-180"></a></span>
-<span id="cb38-181"><a href="#cb38-181"></a>In <span class="in">`courses`</span>, each row corresponds to a class section with information on:</span>
-<span id="cb38-182"><a href="#cb38-182"></a></span>
-<span id="cb38-183"><a href="#cb38-183"></a><span class="ss">-   </span><span class="in">`sessionID`</span> = an identifier of the class section</span>
-<span id="cb38-184"><a href="#cb38-184"></a><span class="ss">-   </span><span class="in">`dept`</span> = department</span>
-<span id="cb38-185"><a href="#cb38-185"></a><span class="ss">-   </span><span class="in">`level`</span> = course level (eg: 100)</span>
-<span id="cb38-186"><a href="#cb38-186"></a><span class="ss">-   </span><span class="in">`sem`</span> = semester</span>
-<span id="cb38-187"><a href="#cb38-187"></a><span class="ss">-   </span><span class="in">`enroll`</span> = enrollment (number of students)</span>
-<span id="cb38-188"><a href="#cb38-188"></a><span class="ss">-   </span><span class="in">`iid`</span> = instructor ID</span>
-<span id="cb38-189"><a href="#cb38-189"></a></span>
-<span id="cb38-192"><a href="#cb38-192"></a><span class="in">```{r}</span></span>
-<span id="cb38-193"><a href="#cb38-193"></a><span class="co">#| echo: false</span></span>
-<span id="cb38-194"><a href="#cb38-194"></a></span>
-<span id="cb38-195"><a href="#cb38-195"></a>courses <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/courses.csv"</span>)</span>
-<span id="cb38-196"><a href="#cb38-196"></a><span class="fu">head</span>(courses)</span>
-<span id="cb38-197"><a href="#cb38-197"></a><span class="in">```</span></span>
-<span id="cb38-198"><a href="#cb38-198"></a></span>
-<span id="cb38-199"><a href="#cb38-199"></a>Use R code to take a quick glance at the data.</span>
-<span id="cb38-200"><a href="#cb38-200"></a></span>
-<span id="cb38-203"><a href="#cb38-203"></a><span class="in">```{r}</span></span>
-<span id="cb38-204"><a href="#cb38-204"></a><span class="co"># How many observations (rows) and variables (columns) are there in the grades data?</span></span>
-<span id="cb38-205"><a href="#cb38-205"></a></span>
-<span id="cb38-206"><a href="#cb38-206"></a></span>
-<span id="cb38-207"><a href="#cb38-207"></a><span class="co"># How many observations (rows) and variables (columns) are there in the courses data?</span></span>
-<span id="cb38-208"><a href="#cb38-208"></a></span>
-<span id="cb38-209"><a href="#cb38-209"></a></span>
-<span id="cb38-210"><a href="#cb38-210"></a><span class="in">```</span></span>
-<span id="cb38-211"><a href="#cb38-211"></a></span>
-<span id="cb38-212"><a href="#cb38-212"></a></span>
-<span id="cb38-213"><a href="#cb38-213"></a></span>
-<span id="cb38-214"><a href="#cb38-214"></a><span class="fu">### Exercise 4: Class size {.unnumbered}</span></span>
-<span id="cb38-215"><a href="#cb38-215"></a></span>
-<span id="cb38-216"><a href="#cb38-216"></a>How big are the classes?</span>
-<span id="cb38-217"><a href="#cb38-217"></a></span>
-<span id="cb38-218"><a href="#cb38-218"></a><span class="fu">#### Part a {.unnumbered}</span></span>
-<span id="cb38-219"><a href="#cb38-219"></a></span>
-<span id="cb38-220"><a href="#cb38-220"></a>Before digging in, note that some courses are listed twice in the <span class="in">`courses`</span> data:</span>
-<span id="cb38-221"><a href="#cb38-221"></a></span>
-<span id="cb38-224"><a href="#cb38-224"></a><span class="in">```{r}</span></span>
-<span id="cb38-225"><a href="#cb38-225"></a>courses <span class="sc">|&gt;</span> </span>
-<span id="cb38-226"><a href="#cb38-226"></a>  <span class="fu">count</span>(sessionID) <span class="sc">|&gt;</span> </span>
-<span id="cb38-227"><a href="#cb38-227"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb38-228"><a href="#cb38-228"></a><span class="in">```</span></span>
-<span id="cb38-229"><a href="#cb38-229"></a></span>
-<span id="cb38-230"><a href="#cb38-230"></a>If we pick out just 1 of these, we learn that some courses are cross-listed in multiple departments:</span>
-<span id="cb38-231"><a href="#cb38-231"></a></span>
-<span id="cb38-234"><a href="#cb38-234"></a><span class="in">```{r}</span></span>
-<span id="cb38-235"><a href="#cb38-235"></a>courses <span class="sc">|&gt;</span> </span>
-<span id="cb38-236"><a href="#cb38-236"></a>  <span class="fu">filter</span>(sessionID <span class="sc">==</span> <span class="st">"session2047"</span>)</span>
-<span id="cb38-237"><a href="#cb38-237"></a><span class="in">```</span></span>
-<span id="cb38-238"><a href="#cb38-238"></a></span>
-<span id="cb38-239"><a href="#cb38-239"></a>For our class size exploration, obtain the *total* enrollments in each <span class="in">`sessionID`</span>, combining any cross-listed sections. Save this as <span class="in">`courses_combined`</span>. NOTE: There's no joining to do here!</span>
-<span id="cb38-240"><a href="#cb38-240"></a></span>
-<span id="cb38-243"><a href="#cb38-243"></a><span class="in">```{r}</span></span>
-<span id="cb38-244"><a href="#cb38-244"></a><span class="co"># courses_combined &lt;- courses |&gt; </span></span>
-<span id="cb38-245"><a href="#cb38-245"></a><span class="co">#   ___(sessionID) |&gt; </span></span>
-<span id="cb38-246"><a href="#cb38-246"></a><span class="co">#   ___(enroll = sum(___))</span></span>
-<span id="cb38-247"><a href="#cb38-247"></a></span>
-<span id="cb38-248"><a href="#cb38-248"></a><span class="co"># Check that this has 1695 rows and 2 columns</span></span>
-<span id="cb38-249"><a href="#cb38-249"></a><span class="co"># dim(courses_combined)</span></span>
-<span id="cb38-250"><a href="#cb38-250"></a><span class="in">```</span></span>
-<span id="cb38-251"><a href="#cb38-251"></a></span>
-<span id="cb38-252"><a href="#cb38-252"></a><span class="fu">#### Part b {.unnumbered}</span></span>
-<span id="cb38-253"><a href="#cb38-253"></a></span>
-<span id="cb38-254"><a href="#cb38-254"></a>Let's first examine the question of class size from the *administration*'s viewpoint. To this end, calculate the median class size across all class sections. (The median is the *middle* or 50th percentile. Unlike the *mean*, it's not skewed by outliers.) THINK FIRST:</span>
-<span id="cb38-255"><a href="#cb38-255"></a></span>
-<span id="cb38-256"><a href="#cb38-256"></a><span class="ss">-   </span>Which of the 2 datasets do you need to answer this question? One? Both?</span>
-<span id="cb38-257"><a href="#cb38-257"></a><span class="ss">-   </span>If you need course information, use <span class="in">`courses_combined`</span> not <span class="in">`courses`</span>.</span>
-<span id="cb38-258"><a href="#cb38-258"></a><span class="ss">-   </span>Do you have to do any joining? If so, which dataset will go on the left, i.e. which dataset includes your primary observations of interest? Which join function will you need?</span>
-<span id="cb38-259"><a href="#cb38-259"></a></span>
-<span id="cb38-262"><a href="#cb38-262"></a><span class="in">```{r}</span></span>
-<span id="cb38-263"><a href="#cb38-263"></a><span class="in">```</span></span>
-<span id="cb38-264"><a href="#cb38-264"></a></span>
-<span id="cb38-265"><a href="#cb38-265"></a><span class="fu">#### Part c {.unnumbered}</span></span>
-<span id="cb38-266"><a href="#cb38-266"></a></span>
-<span id="cb38-267"><a href="#cb38-267"></a>But how big are classes from the student perspective? To this end, calculate the median class size for each individual student. Once you have the correct output, store it as <span class="in">`student_class_size`</span>. THINK FIRST:</span>
-<span id="cb38-268"><a href="#cb38-268"></a></span>
-<span id="cb38-269"><a href="#cb38-269"></a><span class="ss">-   </span>Which of the 2 datasets do you need to answer this question? One? Both?</span>
-<span id="cb38-270"><a href="#cb38-270"></a><span class="ss">-   </span>If you need course information, use <span class="in">`courses_combined`</span> not <span class="in">`courses`</span>.</span>
-<span id="cb38-271"><a href="#cb38-271"></a><span class="ss">-   </span>Do you have to do any joining? If so, which dataset will go on the left, i.e. which dataset includes your primary observations of interest? Which join function will you need?</span>
-<span id="cb38-272"><a href="#cb38-272"></a></span>
-<span id="cb38-275"><a href="#cb38-275"></a><span class="in">```{r}</span></span>
-<span id="cb38-276"><a href="#cb38-276"></a><span class="in">```</span></span>
-<span id="cb38-277"><a href="#cb38-277"></a></span>
-<span id="cb38-278"><a href="#cb38-278"></a><span class="fu">#### Part d {.unnumbered}</span></span>
-<span id="cb38-279"><a href="#cb38-279"></a></span>
-<span id="cb38-280"><a href="#cb38-280"></a>The median class size varies from student to student. To get a sense for the typical student experience and range in student experiences, construct and discuss a histogram of the median class sizes experienced by the students.</span>
-<span id="cb38-281"><a href="#cb38-281"></a></span>
-<span id="cb38-284"><a href="#cb38-284"></a><span class="in">```{r}</span></span>
-<span id="cb38-285"><a href="#cb38-285"></a><span class="co"># ggplot(student_class_size, aes(x = ___)) + </span></span>
-<span id="cb38-286"><a href="#cb38-286"></a><span class="co">#   geom___()</span></span>
-<span id="cb38-287"><a href="#cb38-287"></a><span class="in">```</span></span>
-<span id="cb38-288"><a href="#cb38-288"></a></span>
-<span id="cb38-289"><a href="#cb38-289"></a></span>
-<span id="cb38-290"><a href="#cb38-290"></a></span>
-<span id="cb38-291"><a href="#cb38-291"></a><span class="fu">### Exercise 5: Narrowing in on classes {.unnumbered}</span></span>
-<span id="cb38-292"><a href="#cb38-292"></a></span>
-<span id="cb38-293"><a href="#cb38-293"></a><span class="fu">#### Part a {.unnumbered}</span></span>
-<span id="cb38-294"><a href="#cb38-294"></a></span>
-<span id="cb38-295"><a href="#cb38-295"></a>Show data on the students that enrolled in <span class="in">`session1986`</span>. THINK FIRST: Which of the 2 datasets do you need to answer this question? One? Both?</span>
-<span id="cb38-296"><a href="#cb38-296"></a></span>
-<span id="cb38-299"><a href="#cb38-299"></a><span class="in">```{r}</span></span>
-<span id="cb38-300"><a href="#cb38-300"></a><span class="in">```</span></span>
-<span id="cb38-301"><a href="#cb38-301"></a></span>
-<span id="cb38-302"><a href="#cb38-302"></a><span class="fu">#### Part b {.unnumbered}</span></span>
-<span id="cb38-303"><a href="#cb38-303"></a></span>
-<span id="cb38-304"><a href="#cb38-304"></a>Below is a dataset with all courses in department E:</span>
-<span id="cb38-305"><a href="#cb38-305"></a></span>
-<span id="cb38-308"><a href="#cb38-308"></a><span class="in">```{r}</span></span>
-<span id="cb38-309"><a href="#cb38-309"></a>dept_E <span class="ot">&lt;-</span> courses <span class="sc">|&gt;</span> </span>
-<span id="cb38-310"><a href="#cb38-310"></a>  <span class="fu">filter</span>(dept <span class="sc">==</span> <span class="st">"E"</span>)</span>
-<span id="cb38-311"><a href="#cb38-311"></a><span class="in">```</span></span>
-<span id="cb38-312"><a href="#cb38-312"></a></span>
-<span id="cb38-313"><a href="#cb38-313"></a>What students enrolled in classes in department E? (We just want info on the students, not the classes.)</span>
-<span id="cb38-314"><a href="#cb38-314"></a></span>
-<span id="cb38-317"><a href="#cb38-317"></a><span class="in">```{r}</span></span>
-<span id="cb38-318"><a href="#cb38-318"></a><span class="in">```</span></span>
-<span id="cb38-319"><a href="#cb38-319"></a></span>
-<span id="cb38-320"><a href="#cb38-320"></a></span>
-<span id="cb38-321"><a href="#cb38-321"></a></span>
-<span id="cb38-322"><a href="#cb38-322"></a><span class="fu">### Exercise 6: All the wrangling {.unnumbered}</span></span>
-<span id="cb38-323"><a href="#cb38-323"></a></span>
-<span id="cb38-324"><a href="#cb38-324"></a>Use all of your wrangling skills to answer the following prompts! THINK FIRST:</span>
-<span id="cb38-325"><a href="#cb38-325"></a></span>
-<span id="cb38-326"><a href="#cb38-326"></a><span class="ss">-   </span>Think about what tables you might need to join (if any). Identify the corresponding variables to match.</span>
-<span id="cb38-327"><a href="#cb38-327"></a><span class="ss">-   </span>You'll need an extra table to convert grades to grade point averages:</span>
-<span id="cb38-328"><a href="#cb38-328"></a></span>
-<span id="cb38-331"><a href="#cb38-331"></a><span class="in">```{r}</span></span>
-<span id="cb38-332"><a href="#cb38-332"></a>gpa_conversion <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb38-333"><a href="#cb38-333"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"A+"</span>, <span class="st">"A"</span>, <span class="st">"A-"</span>, <span class="st">"B+"</span>, <span class="st">"B"</span>, <span class="st">"B-"</span>, <span class="st">"C+"</span>, <span class="st">"C"</span>, <span class="st">"C-"</span>, <span class="st">"D+"</span>, <span class="st">"D"</span>, <span class="st">"D-"</span>, <span class="st">"NC"</span>, <span class="st">"AU"</span>, <span class="st">"S"</span>), </span>
-<span id="cb38-334"><a href="#cb38-334"></a>  <span class="at">gp =</span> <span class="fu">c</span>(<span class="fl">4.3</span>, <span class="dv">4</span>, <span class="fl">3.7</span>, <span class="fl">3.3</span>, <span class="dv">3</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>, <span class="dv">2</span>, <span class="fl">1.7</span>, <span class="fl">1.3</span>, <span class="dv">1</span>, <span class="fl">0.7</span>, <span class="dv">0</span>, <span class="cn">NA</span>, <span class="cn">NA</span>)</span>
-<span id="cb38-335"><a href="#cb38-335"></a>)</span>
-<span id="cb38-336"><a href="#cb38-336"></a></span>
-<span id="cb38-337"><a href="#cb38-337"></a>gpa_conversion</span>
-<span id="cb38-338"><a href="#cb38-338"></a><span class="in">```</span></span>
-<span id="cb38-339"><a href="#cb38-339"></a></span>
-<span id="cb38-340"><a href="#cb38-340"></a><span class="fu">#### Part a {.unnumbered}</span></span>
-<span id="cb38-341"><a href="#cb38-341"></a></span>
-<span id="cb38-342"><a href="#cb38-342"></a>How many total student enrollments are there in each department? Order from high to low.</span>
-<span id="cb38-343"><a href="#cb38-343"></a></span>
-<span id="cb38-346"><a href="#cb38-346"></a><span class="in">```{r}</span></span>
-<span id="cb38-347"><a href="#cb38-347"></a><span class="in">```</span></span>
-<span id="cb38-348"><a href="#cb38-348"></a></span>
-<span id="cb38-349"><a href="#cb38-349"></a><span class="fu">#### Part b {.unnumbered}</span></span>
-<span id="cb38-350"><a href="#cb38-350"></a></span>
-<span id="cb38-351"><a href="#cb38-351"></a>What's the grade-point average (GPA) for each student?</span>
-<span id="cb38-352"><a href="#cb38-352"></a></span>
-<span id="cb38-355"><a href="#cb38-355"></a><span class="in">```{r}</span></span>
-<span id="cb38-356"><a href="#cb38-356"></a><span class="in">```</span></span>
-<span id="cb38-357"><a href="#cb38-357"></a></span>
-<span id="cb38-358"><a href="#cb38-358"></a><span class="fu">#### Part c {.unnumbered}</span></span>
-<span id="cb38-359"><a href="#cb38-359"></a></span>
-<span id="cb38-360"><a href="#cb38-360"></a>What's the median GPA across all students?</span>
-<span id="cb38-361"><a href="#cb38-361"></a></span>
-<span id="cb38-364"><a href="#cb38-364"></a><span class="in">```{r}</span></span>
-<span id="cb38-365"><a href="#cb38-365"></a><span class="in">```</span></span>
-<span id="cb38-366"><a href="#cb38-366"></a></span>
-<span id="cb38-367"><a href="#cb38-367"></a><span class="fu">#### Part d {.unnumbered}</span></span>
-<span id="cb38-368"><a href="#cb38-368"></a></span>
-<span id="cb38-369"><a href="#cb38-369"></a>What fraction of grades are below B+?</span>
-<span id="cb38-370"><a href="#cb38-370"></a></span>
-<span id="cb38-373"><a href="#cb38-373"></a><span class="in">```{r}</span></span>
-<span id="cb38-374"><a href="#cb38-374"></a><span class="in">```</span></span>
-<span id="cb38-375"><a href="#cb38-375"></a></span>
-<span id="cb38-376"><a href="#cb38-376"></a><span class="fu">#### Part e {.unnumbered}</span></span>
-<span id="cb38-377"><a href="#cb38-377"></a></span>
-<span id="cb38-378"><a href="#cb38-378"></a>What's the grade-point average for each instructor? Order from low to high.</span>
-<span id="cb38-379"><a href="#cb38-379"></a></span>
-<span id="cb38-382"><a href="#cb38-382"></a><span class="in">```{r}</span></span>
-<span id="cb38-383"><a href="#cb38-383"></a><span class="in">```</span></span>
-<span id="cb38-384"><a href="#cb38-384"></a></span>
-<span id="cb38-385"><a href="#cb38-385"></a><span class="fu">#### Part f {.unnumbered}</span></span>
-<span id="cb38-386"><a href="#cb38-386"></a></span>
-<span id="cb38-387"><a href="#cb38-387"></a>CHALLENGE: Estimate the grade-point average for each department, and sort from low to high. NOTE: Don't include cross-listed courses. Students in cross-listed courses could be enrolled under either department, and we do not know which department to assign the grade to. HINT: You'll need to do multiple joins.</span>
-<span id="cb38-388"><a href="#cb38-388"></a></span>
-<span id="cb38-389"><a href="#cb38-389"></a></span>
+<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">---</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="an">title:</span><span class="co"> "joining"</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">---</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="fu">## Exercises</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="fu">### Exercise 1: Where are my keys? {.unnumbered}</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="fu">#### Part a {.unnumbered}</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a></span>
+<span id="cb15-12"><a href="#cb15-12"></a>Define two new datasets, with different students and courses:</span>
+<span id="cb15-13"><a href="#cb15-13"></a></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="in">```{r}</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-18"><a href="#cb15-18"></a>students_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-19"><a href="#cb15-19"></a>  <span class="at">student =</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>),</span>
+<span id="cb15-20"><a href="#cb15-20"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"COMP 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"POLI 101"</span>)</span>
+<span id="cb15-21"><a href="#cb15-21"></a>)</span>
+<span id="cb15-22"><a href="#cb15-22"></a></span>
+<span id="cb15-23"><a href="#cb15-23"></a><span class="co"># Check it out</span></span>
+<span id="cb15-24"><a href="#cb15-24"></a>students_2</span>
+<span id="cb15-25"><a href="#cb15-25"></a></span>
+<span id="cb15-26"><a href="#cb15-26"></a>enrollments_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-27"><a href="#cb15-27"></a>  <span class="at">course =</span> <span class="fu">c</span>(<span class="st">"ART 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"COMP 101"</span>),</span>
+<span id="cb15-28"><a href="#cb15-28"></a>  <span class="at">enrollment =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">19</span>)</span>
+<span id="cb15-29"><a href="#cb15-29"></a>)</span>
+<span id="cb15-30"><a href="#cb15-30"></a></span>
+<span id="cb15-31"><a href="#cb15-31"></a><span class="co"># Check it out</span></span>
+<span id="cb15-32"><a href="#cb15-32"></a>enrollments_2</span>
+<span id="cb15-33"><a href="#cb15-33"></a><span class="in">```</span></span>
+<span id="cb15-34"><a href="#cb15-34"></a></span>
+<span id="cb15-35"><a href="#cb15-35"></a>To connect the course enrollments to the students' courses, try do a <span class="in">`left_join()`</span>. You get an error! Identify the problem by reviewing the error message and the datasets we're trying to join.</span>
+<span id="cb15-36"><a href="#cb15-36"></a></span>
+<span id="cb15-37"><a href="#cb15-37"></a><span class="in">```{r eval = FALSE}</span></span>
+<span id="cb15-38"><a href="#cb15-38"></a><span class="in"># eval = FALSE: don't evaluate this chunk when knitting. it produces an error.</span></span>
+<span id="cb15-39"><a href="#cb15-39"></a><span class="in">#students_2 |&gt; </span></span>
+<span id="cb15-40"><a href="#cb15-40"></a><span class="in">#  left_join(enrollments_2)</span></span>
+<span id="cb15-41"><a href="#cb15-41"></a><span class="in">```</span></span>
+<span id="cb15-42"><a href="#cb15-42"></a></span>
+<span id="cb15-43"><a href="#cb15-43"></a><span class="fu">#### Part b {.unnumbered}</span></span>
+<span id="cb15-44"><a href="#cb15-44"></a></span>
+<span id="cb15-45"><a href="#cb15-45"></a>The problem is that course name, the **key** or variable that links these two datasets, is labeled differently: <span class="in">`class`</span> in the <span class="in">`students_2`</span> data and <span class="in">`course`</span> in the <span class="in">`enrollments_2`</span> data. Thus we have to specify these keys in our code:</span>
+<span id="cb15-46"><a href="#cb15-46"></a></span>
+<span id="cb15-49"><a href="#cb15-49"></a><span class="in">```{r}</span></span>
+<span id="cb15-50"><a href="#cb15-50"></a>students_2 <span class="sc">|&gt;</span> </span>
+<span id="cb15-51"><a href="#cb15-51"></a>  <span class="fu">left_join</span>(enrollments_2, <span class="fu">join_by</span>(class <span class="sc">==</span> course))</span>
+<span id="cb15-52"><a href="#cb15-52"></a><span class="in">```</span></span>
+<span id="cb15-53"><a href="#cb15-53"></a></span>
+<span id="cb15-56"><a href="#cb15-56"></a><span class="in">```{r}</span></span>
+<span id="cb15-57"><a href="#cb15-57"></a><span class="co">#| eval: false  # keep this false since it will produce an error</span></span>
+<span id="cb15-58"><a href="#cb15-58"></a></span>
+<span id="cb15-59"><a href="#cb15-59"></a><span class="co"># The order of the keys is important:</span></span>
+<span id="cb15-60"><a href="#cb15-60"></a><span class="co"># join_by("left data key" == "right data key")</span></span>
+<span id="cb15-61"><a href="#cb15-61"></a><span class="co"># The order is mixed up here, thus we get an error:</span></span>
+<span id="cb15-62"><a href="#cb15-62"></a>students_2 <span class="sc">|&gt;</span> </span>
+<span id="cb15-63"><a href="#cb15-63"></a><span class="co">#  left_join(enrollments_2, join_by(course == class))</span></span>
+<span id="cb15-64"><a href="#cb15-64"></a><span class="in">```</span></span>
+<span id="cb15-65"><a href="#cb15-65"></a></span>
+<span id="cb15-66"><a href="#cb15-66"></a><span class="fu">#### Part c {.unnumbered}</span></span>
+<span id="cb15-67"><a href="#cb15-67"></a></span>
+<span id="cb15-68"><a href="#cb15-68"></a>Define another set of fake data which adds grade information:</span>
+<span id="cb15-69"><a href="#cb15-69"></a></span>
+<span id="cb15-72"><a href="#cb15-72"></a><span class="in">```{r}</span></span>
+<span id="cb15-73"><a href="#cb15-73"></a><span class="co"># Add student grades in each course</span></span>
+<span id="cb15-74"><a href="#cb15-74"></a>students_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-75"><a href="#cb15-75"></a>  <span class="at">student =</span> <span class="fu">c</span>(<span class="st">"Y"</span>, <span class="st">"Y"</span>, <span class="st">"Z"</span>, <span class="st">"Z"</span>),</span>
+<span id="cb15-76"><a href="#cb15-76"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"COMP 101"</span>, <span class="st">"BIOL 101"</span>, <span class="st">"POLI 101"</span>, <span class="st">"COMP 101"</span>),</span>
+<span id="cb15-77"><a href="#cb15-77"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"S"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>)</span>
+<span id="cb15-78"><a href="#cb15-78"></a>)</span>
+<span id="cb15-79"><a href="#cb15-79"></a></span>
+<span id="cb15-80"><a href="#cb15-80"></a><span class="co"># Check it out</span></span>
+<span id="cb15-81"><a href="#cb15-81"></a>students_3</span>
+<span id="cb15-82"><a href="#cb15-82"></a></span>
+<span id="cb15-83"><a href="#cb15-83"></a><span class="co"># Add average grades in each course</span></span>
+<span id="cb15-84"><a href="#cb15-84"></a>enrollments_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-85"><a href="#cb15-85"></a>  <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"ART 101"</span>, <span class="st">"BIOL 101"</span>,<span class="st">"COMP 101"</span>),</span>
+<span id="cb15-86"><a href="#cb15-86"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"A-"</span>),</span>
+<span id="cb15-87"><a href="#cb15-87"></a>  <span class="at">enrollment =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">18</span>, <span class="dv">19</span>)</span>
+<span id="cb15-88"><a href="#cb15-88"></a>)</span>
+<span id="cb15-89"><a href="#cb15-89"></a></span>
+<span id="cb15-90"><a href="#cb15-90"></a><span class="co"># Check it out</span></span>
+<span id="cb15-91"><a href="#cb15-91"></a>enrollments_3</span>
+<span id="cb15-92"><a href="#cb15-92"></a><span class="in">```</span></span>
+<span id="cb15-93"><a href="#cb15-93"></a></span>
+<span id="cb15-94"><a href="#cb15-94"></a>Try doing a <span class="in">`left_join()`</span> to link the students' classes to their enrollment info. Did this work? Try and figure out the culprit by examining the output.</span>
+<span id="cb15-95"><a href="#cb15-95"></a></span>
+<span id="cb15-98"><a href="#cb15-98"></a><span class="in">```{r}</span></span>
+<span id="cb15-99"><a href="#cb15-99"></a>students_3 <span class="sc">|&gt;</span> </span>
+<span id="cb15-100"><a href="#cb15-100"></a>  <span class="fu">left_join</span>(enrollments_3)</span>
+<span id="cb15-101"><a href="#cb15-101"></a><span class="in">```</span></span>
+<span id="cb15-102"><a href="#cb15-102"></a></span>
+<span id="cb15-103"><a href="#cb15-103"></a><span class="fu">#### Part d {.unnumbered}</span></span>
+<span id="cb15-104"><a href="#cb15-104"></a></span>
+<span id="cb15-105"><a href="#cb15-105"></a>The issue here is that our datasets have *2* column names in common: `class` and `grade`. BUT `grade` is measuring 2 different things here: individual student grades in `students_3` and average student grades in `enrollments_3`. Thus it doesn't make sense to try to join the datasets with respect to this variable. We can again solve this by specifying that we want to join the datasets using the `class` variable as a *key*. What are <span class="in">`grade.x`</span> and <span class="in">`grade.y`</span>?</span>
+<span id="cb15-106"><a href="#cb15-106"></a></span>
+<span id="cb15-109"><a href="#cb15-109"></a><span class="in">```{r}</span></span>
+<span id="cb15-110"><a href="#cb15-110"></a>students_3 <span class="sc">|&gt;</span> </span>
+<span id="cb15-111"><a href="#cb15-111"></a>  <span class="fu">left_join</span>(enrollments_3, <span class="fu">join_by</span>(class <span class="sc">==</span> class))</span>
+<span id="cb15-112"><a href="#cb15-112"></a><span class="in">```</span></span>
+<span id="cb15-113"><a href="#cb15-113"></a></span>
+<span id="cb15-114"><a href="#cb15-114"></a></span>
+<span id="cb15-115"><a href="#cb15-115"></a><span class="fu">### Exercise 2: More small practice {.unnumbered}</span></span>
+<span id="cb15-116"><a href="#cb15-116"></a></span>
+<span id="cb15-117"><a href="#cb15-117"></a>Before applying these ideas to bigger datasets, let's practice identifying which join is appropriate in different scenarios. Define the following fake data on <span class="in">`voters`</span> (people who *have* voted) and `contact` info for voting age adults (people who *could* vote):</span>
+<span id="cb15-118"><a href="#cb15-118"></a></span>
+<span id="cb15-121"><a href="#cb15-121"></a><span class="in">```{r}</span></span>
+<span id="cb15-122"><a href="#cb15-122"></a><span class="co"># People who have voted</span></span>
+<span id="cb15-123"><a href="#cb15-123"></a>voters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-124"><a href="#cb15-124"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>, <span class="st">"G"</span>),</span>
+<span id="cb15-125"><a href="#cb15-125"></a>  <span class="at">times_voted =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">17</span>, <span class="dv">6</span>, <span class="dv">20</span>)</span>
+<span id="cb15-126"><a href="#cb15-126"></a>)</span>
+<span id="cb15-127"><a href="#cb15-127"></a></span>
+<span id="cb15-128"><a href="#cb15-128"></a>voters</span>
+<span id="cb15-129"><a href="#cb15-129"></a></span>
+<span id="cb15-130"><a href="#cb15-130"></a><span class="co"># Contact info for voting age adults</span></span>
+<span id="cb15-131"><a href="#cb15-131"></a>contact <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-132"><a href="#cb15-132"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</span>
+<span id="cb15-133"><a href="#cb15-133"></a>  <span class="at">address =</span> <span class="fu">c</span>(<span class="st">"summit"</span>, <span class="st">"grand"</span>, <span class="st">"snelling"</span>, <span class="st">"fairview"</span>),</span>
+<span id="cb15-134"><a href="#cb15-134"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">89</span>, <span class="dv">43</span>, <span class="dv">38</span>)</span>
+<span id="cb15-135"><a href="#cb15-135"></a>)</span>
+<span id="cb15-136"><a href="#cb15-136"></a></span>
+<span id="cb15-137"><a href="#cb15-137"></a>contact</span>
+<span id="cb15-138"><a href="#cb15-138"></a><span class="in">```</span></span>
+<span id="cb15-139"><a href="#cb15-139"></a></span>
+<span id="cb15-140"><a href="#cb15-140"></a>Use the appropriate join for each prompt below. In each case, think before you type:</span>
+<span id="cb15-141"><a href="#cb15-141"></a></span>
+<span id="cb15-142"><a href="#cb15-142"></a><span class="ss">-   </span>What dataset goes on the left?</span>
+<span id="cb15-143"><a href="#cb15-143"></a><span class="ss">-   </span>What do you want the resulting dataset to look like? How many rows and columns will it have?</span>
+<span id="cb15-144"><a href="#cb15-144"></a></span>
+<span id="cb15-147"><a href="#cb15-147"></a><span class="in">```{r}</span></span>
+<span id="cb15-148"><a href="#cb15-148"></a><span class="co"># 1. We want contact info for people who HAVEN'T voted</span></span>
+<span id="cb15-149"><a href="#cb15-149"></a></span>
+<span id="cb15-150"><a href="#cb15-150"></a></span>
+<span id="cb15-151"><a href="#cb15-151"></a><span class="co"># 2. We want contact info for people who HAVE voted</span></span>
+<span id="cb15-152"><a href="#cb15-152"></a></span>
+<span id="cb15-153"><a href="#cb15-153"></a></span>
+<span id="cb15-154"><a href="#cb15-154"></a><span class="co"># 3. We want any data available on each person</span></span>
+<span id="cb15-155"><a href="#cb15-155"></a></span>
+<span id="cb15-156"><a href="#cb15-156"></a></span>
+<span id="cb15-157"><a href="#cb15-157"></a><span class="co"># 4. When possible, we want to add contact info to the voting roster</span></span>
+<span id="cb15-158"><a href="#cb15-158"></a></span>
+<span id="cb15-159"><a href="#cb15-159"></a></span>
+<span id="cb15-160"><a href="#cb15-160"></a><span class="in">```</span></span>
+<span id="cb15-161"><a href="#cb15-161"></a></span>
+<span id="cb15-162"><a href="#cb15-162"></a></span>
+<span id="cb15-163"><a href="#cb15-163"></a></span>
+<span id="cb15-164"><a href="#cb15-164"></a><span class="fu">### Exercise 3: Bigger datasets {.unnumbered}</span></span>
+<span id="cb15-165"><a href="#cb15-165"></a></span>
+<span id="cb15-166"><a href="#cb15-166"></a>Let's apply these ideas to some bigger datasets. In <span class="in">`grades`</span>, each row is a student-class pair with information on:</span>
+<span id="cb15-167"><a href="#cb15-167"></a></span>
+<span id="cb15-168"><a href="#cb15-168"></a><span class="ss">-   </span><span class="in">`sid`</span> = student ID</span>
+<span id="cb15-169"><a href="#cb15-169"></a><span class="ss">-   </span><span class="in">`grade`</span> = student's grade</span>
+<span id="cb15-170"><a href="#cb15-170"></a><span class="ss">-   </span><span class="in">`sessionID`</span> = an identifier of the class section</span>
+<span id="cb15-171"><a href="#cb15-171"></a></span>
+<span id="cb15-174"><a href="#cb15-174"></a><span class="in">```{r}</span></span>
+<span id="cb15-175"><a href="#cb15-175"></a><span class="co"># Get rid of some duplicate rows!</span></span>
+<span id="cb15-176"><a href="#cb15-176"></a>grades <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/grades.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-177"><a href="#cb15-177"></a>  <span class="fu">distinct</span>(sid, sessionID, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-178"><a href="#cb15-178"></a><span class="fu">head</span>(grades)</span>
+<span id="cb15-179"><a href="#cb15-179"></a><span class="in">```</span></span>
+<span id="cb15-180"><a href="#cb15-180"></a></span>
+<span id="cb15-181"><a href="#cb15-181"></a>In <span class="in">`courses`</span>, each row corresponds to a class section with information on:</span>
+<span id="cb15-182"><a href="#cb15-182"></a></span>
+<span id="cb15-183"><a href="#cb15-183"></a><span class="ss">-   </span><span class="in">`sessionID`</span> = an identifier of the class section</span>
+<span id="cb15-184"><a href="#cb15-184"></a><span class="ss">-   </span><span class="in">`dept`</span> = department</span>
+<span id="cb15-185"><a href="#cb15-185"></a><span class="ss">-   </span><span class="in">`level`</span> = course level (eg: 100)</span>
+<span id="cb15-186"><a href="#cb15-186"></a><span class="ss">-   </span><span class="in">`sem`</span> = semester</span>
+<span id="cb15-187"><a href="#cb15-187"></a><span class="ss">-   </span><span class="in">`enroll`</span> = enrollment (number of students)</span>
+<span id="cb15-188"><a href="#cb15-188"></a><span class="ss">-   </span><span class="in">`iid`</span> = instructor ID</span>
+<span id="cb15-189"><a href="#cb15-189"></a></span>
+<span id="cb15-192"><a href="#cb15-192"></a><span class="in">```{r}</span></span>
+<span id="cb15-193"><a href="#cb15-193"></a><span class="co">#| echo: false</span></span>
+<span id="cb15-194"><a href="#cb15-194"></a></span>
+<span id="cb15-195"><a href="#cb15-195"></a>courses <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/courses.csv"</span>)</span>
+<span id="cb15-196"><a href="#cb15-196"></a><span class="fu">head</span>(courses)</span>
+<span id="cb15-197"><a href="#cb15-197"></a><span class="in">```</span></span>
+<span id="cb15-198"><a href="#cb15-198"></a></span>
+<span id="cb15-199"><a href="#cb15-199"></a>Use R code to take a quick glance at the data.</span>
+<span id="cb15-200"><a href="#cb15-200"></a></span>
+<span id="cb15-203"><a href="#cb15-203"></a><span class="in">```{r}</span></span>
+<span id="cb15-204"><a href="#cb15-204"></a><span class="co"># How many observations (rows) and variables (columns) are there in the grades data?</span></span>
+<span id="cb15-205"><a href="#cb15-205"></a></span>
+<span id="cb15-206"><a href="#cb15-206"></a></span>
+<span id="cb15-207"><a href="#cb15-207"></a><span class="co"># How many observations (rows) and variables (columns) are there in the courses data?</span></span>
+<span id="cb15-208"><a href="#cb15-208"></a></span>
+<span id="cb15-209"><a href="#cb15-209"></a></span>
+<span id="cb15-210"><a href="#cb15-210"></a><span class="in">```</span></span>
+<span id="cb15-211"><a href="#cb15-211"></a></span>
+<span id="cb15-212"><a href="#cb15-212"></a></span>
+<span id="cb15-213"><a href="#cb15-213"></a></span>
+<span id="cb15-214"><a href="#cb15-214"></a><span class="fu">### Exercise 4: Class size {.unnumbered}</span></span>
+<span id="cb15-215"><a href="#cb15-215"></a></span>
+<span id="cb15-216"><a href="#cb15-216"></a>How big are the classes?</span>
+<span id="cb15-217"><a href="#cb15-217"></a></span>
+<span id="cb15-218"><a href="#cb15-218"></a><span class="fu">#### Part a {.unnumbered}</span></span>
+<span id="cb15-219"><a href="#cb15-219"></a></span>
+<span id="cb15-220"><a href="#cb15-220"></a>Before digging in, note that some courses are listed twice in the <span class="in">`courses`</span> data:</span>
+<span id="cb15-221"><a href="#cb15-221"></a></span>
+<span id="cb15-224"><a href="#cb15-224"></a><span class="in">```{r}</span></span>
+<span id="cb15-225"><a href="#cb15-225"></a>courses <span class="sc">|&gt;</span> </span>
+<span id="cb15-226"><a href="#cb15-226"></a>  <span class="fu">count</span>(sessionID) <span class="sc">|&gt;</span> </span>
+<span id="cb15-227"><a href="#cb15-227"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb15-228"><a href="#cb15-228"></a><span class="in">```</span></span>
+<span id="cb15-229"><a href="#cb15-229"></a></span>
+<span id="cb15-230"><a href="#cb15-230"></a>If we pick out just 1 of these, we learn that some courses are cross-listed in multiple departments:</span>
+<span id="cb15-231"><a href="#cb15-231"></a></span>
+<span id="cb15-234"><a href="#cb15-234"></a><span class="in">```{r}</span></span>
+<span id="cb15-235"><a href="#cb15-235"></a>courses <span class="sc">|&gt;</span> </span>
+<span id="cb15-236"><a href="#cb15-236"></a>  <span class="fu">filter</span>(sessionID <span class="sc">==</span> <span class="st">"session2047"</span>)</span>
+<span id="cb15-237"><a href="#cb15-237"></a><span class="in">```</span></span>
+<span id="cb15-238"><a href="#cb15-238"></a></span>
+<span id="cb15-239"><a href="#cb15-239"></a>For our class size exploration, obtain the *total* enrollments in each <span class="in">`sessionID`</span>, combining any cross-listed sections. Save this as <span class="in">`courses_combined`</span>. NOTE: There's no joining to do here!</span>
+<span id="cb15-240"><a href="#cb15-240"></a></span>
+<span id="cb15-243"><a href="#cb15-243"></a><span class="in">```{r}</span></span>
+<span id="cb15-244"><a href="#cb15-244"></a><span class="co"># courses_combined &lt;- courses |&gt; </span></span>
+<span id="cb15-245"><a href="#cb15-245"></a><span class="co">#   ___(sessionID) |&gt; </span></span>
+<span id="cb15-246"><a href="#cb15-246"></a><span class="co">#   ___(enroll = sum(___))</span></span>
+<span id="cb15-247"><a href="#cb15-247"></a></span>
+<span id="cb15-248"><a href="#cb15-248"></a><span class="co"># Check that this has 1695 rows and 2 columns</span></span>
+<span id="cb15-249"><a href="#cb15-249"></a><span class="co"># dim(courses_combined)</span></span>
+<span id="cb15-250"><a href="#cb15-250"></a><span class="in">```</span></span>
+<span id="cb15-251"><a href="#cb15-251"></a></span>
+<span id="cb15-252"><a href="#cb15-252"></a><span class="fu">#### Part b {.unnumbered}</span></span>
+<span id="cb15-253"><a href="#cb15-253"></a></span>
+<span id="cb15-254"><a href="#cb15-254"></a>Let's first examine the question of class size from the *administration*'s viewpoint. To this end, calculate the median class size across all class sections. (The median is the *middle* or 50th percentile. Unlike the *mean*, it's not skewed by outliers.) THINK FIRST:</span>
+<span id="cb15-255"><a href="#cb15-255"></a></span>
+<span id="cb15-256"><a href="#cb15-256"></a><span class="ss">-   </span>Which of the 2 datasets do you need to answer this question? One? Both?</span>
+<span id="cb15-257"><a href="#cb15-257"></a><span class="ss">-   </span>If you need course information, use <span class="in">`courses_combined`</span> not <span class="in">`courses`</span>.</span>
+<span id="cb15-258"><a href="#cb15-258"></a><span class="ss">-   </span>Do you have to do any joining? If so, which dataset will go on the left, i.e. which dataset includes your primary observations of interest? Which join function will you need?</span>
+<span id="cb15-259"><a href="#cb15-259"></a></span>
+<span id="cb15-262"><a href="#cb15-262"></a><span class="in">```{r}</span></span>
+<span id="cb15-263"><a href="#cb15-263"></a><span class="in">```</span></span>
+<span id="cb15-264"><a href="#cb15-264"></a></span>
+<span id="cb15-265"><a href="#cb15-265"></a><span class="fu">#### Part c {.unnumbered}</span></span>
+<span id="cb15-266"><a href="#cb15-266"></a></span>
+<span id="cb15-267"><a href="#cb15-267"></a>But how big are classes from the student perspective? To this end, calculate the median class size for each individual student. Once you have the correct output, store it as <span class="in">`student_class_size`</span>. THINK FIRST:</span>
+<span id="cb15-268"><a href="#cb15-268"></a></span>
+<span id="cb15-269"><a href="#cb15-269"></a><span class="ss">-   </span>Which of the 2 datasets do you need to answer this question? One? Both?</span>
+<span id="cb15-270"><a href="#cb15-270"></a><span class="ss">-   </span>If you need course information, use <span class="in">`courses_combined`</span> not <span class="in">`courses`</span>.</span>
+<span id="cb15-271"><a href="#cb15-271"></a><span class="ss">-   </span>Do you have to do any joining? If so, which dataset will go on the left, i.e. which dataset includes your primary observations of interest? Which join function will you need?</span>
+<span id="cb15-272"><a href="#cb15-272"></a></span>
+<span id="cb15-275"><a href="#cb15-275"></a><span class="in">```{r}</span></span>
+<span id="cb15-276"><a href="#cb15-276"></a><span class="in">```</span></span>
+<span id="cb15-277"><a href="#cb15-277"></a></span>
+<span id="cb15-278"><a href="#cb15-278"></a><span class="fu">#### Part d {.unnumbered}</span></span>
+<span id="cb15-279"><a href="#cb15-279"></a></span>
+<span id="cb15-280"><a href="#cb15-280"></a>The median class size varies from student to student. To get a sense for the typical student experience and range in student experiences, construct and discuss a histogram of the median class sizes experienced by the students.</span>
+<span id="cb15-281"><a href="#cb15-281"></a></span>
+<span id="cb15-284"><a href="#cb15-284"></a><span class="in">```{r}</span></span>
+<span id="cb15-285"><a href="#cb15-285"></a><span class="co"># ggplot(student_class_size, aes(x = ___)) + </span></span>
+<span id="cb15-286"><a href="#cb15-286"></a><span class="co">#   geom___()</span></span>
+<span id="cb15-287"><a href="#cb15-287"></a><span class="in">```</span></span>
+<span id="cb15-288"><a href="#cb15-288"></a></span>
+<span id="cb15-289"><a href="#cb15-289"></a></span>
+<span id="cb15-290"><a href="#cb15-290"></a></span>
+<span id="cb15-291"><a href="#cb15-291"></a><span class="fu">### Exercise 5: Narrowing in on classes {.unnumbered}</span></span>
+<span id="cb15-292"><a href="#cb15-292"></a></span>
+<span id="cb15-293"><a href="#cb15-293"></a><span class="fu">#### Part a {.unnumbered}</span></span>
+<span id="cb15-294"><a href="#cb15-294"></a></span>
+<span id="cb15-295"><a href="#cb15-295"></a>Show data on the students that enrolled in <span class="in">`session1986`</span>. THINK FIRST: Which of the 2 datasets do you need to answer this question? One? Both?</span>
+<span id="cb15-296"><a href="#cb15-296"></a></span>
+<span id="cb15-299"><a href="#cb15-299"></a><span class="in">```{r}</span></span>
+<span id="cb15-300"><a href="#cb15-300"></a><span class="in">```</span></span>
+<span id="cb15-301"><a href="#cb15-301"></a></span>
+<span id="cb15-302"><a href="#cb15-302"></a><span class="fu">#### Part b {.unnumbered}</span></span>
+<span id="cb15-303"><a href="#cb15-303"></a></span>
+<span id="cb15-304"><a href="#cb15-304"></a>Below is a dataset with all courses in department E:</span>
+<span id="cb15-305"><a href="#cb15-305"></a></span>
+<span id="cb15-308"><a href="#cb15-308"></a><span class="in">```{r}</span></span>
+<span id="cb15-309"><a href="#cb15-309"></a>dept_E <span class="ot">&lt;-</span> courses <span class="sc">|&gt;</span> </span>
+<span id="cb15-310"><a href="#cb15-310"></a>  <span class="fu">filter</span>(dept <span class="sc">==</span> <span class="st">"E"</span>)</span>
+<span id="cb15-311"><a href="#cb15-311"></a><span class="in">```</span></span>
+<span id="cb15-312"><a href="#cb15-312"></a></span>
+<span id="cb15-313"><a href="#cb15-313"></a>What students enrolled in classes in department E? (We just want info on the students, not the classes.)</span>
+<span id="cb15-314"><a href="#cb15-314"></a></span>
+<span id="cb15-317"><a href="#cb15-317"></a><span class="in">```{r}</span></span>
+<span id="cb15-318"><a href="#cb15-318"></a><span class="in">```</span></span>
+<span id="cb15-319"><a href="#cb15-319"></a></span>
+<span id="cb15-320"><a href="#cb15-320"></a></span>
+<span id="cb15-321"><a href="#cb15-321"></a></span>
+<span id="cb15-322"><a href="#cb15-322"></a><span class="fu">### Exercise 6: All the wrangling {.unnumbered}</span></span>
+<span id="cb15-323"><a href="#cb15-323"></a></span>
+<span id="cb15-324"><a href="#cb15-324"></a>Use all of your wrangling skills to answer the following prompts! THINK FIRST:</span>
+<span id="cb15-325"><a href="#cb15-325"></a></span>
+<span id="cb15-326"><a href="#cb15-326"></a><span class="ss">-   </span>Think about what tables you might need to join (if any). Identify the corresponding variables to match.</span>
+<span id="cb15-327"><a href="#cb15-327"></a><span class="ss">-   </span>You'll need an extra table to convert grades to grade point averages:</span>
+<span id="cb15-328"><a href="#cb15-328"></a></span>
+<span id="cb15-331"><a href="#cb15-331"></a><span class="in">```{r}</span></span>
+<span id="cb15-332"><a href="#cb15-332"></a>gpa_conversion <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-333"><a href="#cb15-333"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="st">"A+"</span>, <span class="st">"A"</span>, <span class="st">"A-"</span>, <span class="st">"B+"</span>, <span class="st">"B"</span>, <span class="st">"B-"</span>, <span class="st">"C+"</span>, <span class="st">"C"</span>, <span class="st">"C-"</span>, <span class="st">"D+"</span>, <span class="st">"D"</span>, <span class="st">"D-"</span>, <span class="st">"NC"</span>, <span class="st">"AU"</span>, <span class="st">"S"</span>), </span>
+<span id="cb15-334"><a href="#cb15-334"></a>  <span class="at">gp =</span> <span class="fu">c</span>(<span class="fl">4.3</span>, <span class="dv">4</span>, <span class="fl">3.7</span>, <span class="fl">3.3</span>, <span class="dv">3</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>, <span class="dv">2</span>, <span class="fl">1.7</span>, <span class="fl">1.3</span>, <span class="dv">1</span>, <span class="fl">0.7</span>, <span class="dv">0</span>, <span class="cn">NA</span>, <span class="cn">NA</span>)</span>
+<span id="cb15-335"><a href="#cb15-335"></a>)</span>
+<span id="cb15-336"><a href="#cb15-336"></a></span>
+<span id="cb15-337"><a href="#cb15-337"></a>gpa_conversion</span>
+<span id="cb15-338"><a href="#cb15-338"></a><span class="in">```</span></span>
+<span id="cb15-339"><a href="#cb15-339"></a></span>
+<span id="cb15-340"><a href="#cb15-340"></a><span class="fu">#### Part a {.unnumbered}</span></span>
+<span id="cb15-341"><a href="#cb15-341"></a></span>
+<span id="cb15-342"><a href="#cb15-342"></a>How many total student enrollments are there in each department? Order from high to low.</span>
+<span id="cb15-343"><a href="#cb15-343"></a></span>
+<span id="cb15-346"><a href="#cb15-346"></a><span class="in">```{r}</span></span>
+<span id="cb15-347"><a href="#cb15-347"></a><span class="in">```</span></span>
+<span id="cb15-348"><a href="#cb15-348"></a></span>
+<span id="cb15-349"><a href="#cb15-349"></a><span class="fu">#### Part b {.unnumbered}</span></span>
+<span id="cb15-350"><a href="#cb15-350"></a></span>
+<span id="cb15-351"><a href="#cb15-351"></a>What's the grade-point average (GPA) for each student?</span>
+<span id="cb15-352"><a href="#cb15-352"></a></span>
+<span id="cb15-355"><a href="#cb15-355"></a><span class="in">```{r}</span></span>
+<span id="cb15-356"><a href="#cb15-356"></a><span class="in">```</span></span>
+<span id="cb15-357"><a href="#cb15-357"></a></span>
+<span id="cb15-358"><a href="#cb15-358"></a><span class="fu">#### Part c {.unnumbered}</span></span>
+<span id="cb15-359"><a href="#cb15-359"></a></span>
+<span id="cb15-360"><a href="#cb15-360"></a>What's the median GPA across all students?</span>
+<span id="cb15-361"><a href="#cb15-361"></a></span>
+<span id="cb15-364"><a href="#cb15-364"></a><span class="in">```{r}</span></span>
+<span id="cb15-365"><a href="#cb15-365"></a><span class="in">```</span></span>
+<span id="cb15-366"><a href="#cb15-366"></a></span>
+<span id="cb15-367"><a href="#cb15-367"></a><span class="fu">#### Part d {.unnumbered}</span></span>
+<span id="cb15-368"><a href="#cb15-368"></a></span>
+<span id="cb15-369"><a href="#cb15-369"></a>What fraction of grades are below B+?</span>
+<span id="cb15-370"><a href="#cb15-370"></a></span>
+<span id="cb15-373"><a href="#cb15-373"></a><span class="in">```{r}</span></span>
+<span id="cb15-374"><a href="#cb15-374"></a><span class="in">```</span></span>
+<span id="cb15-375"><a href="#cb15-375"></a></span>
+<span id="cb15-376"><a href="#cb15-376"></a><span class="fu">#### Part e {.unnumbered}</span></span>
+<span id="cb15-377"><a href="#cb15-377"></a></span>
+<span id="cb15-378"><a href="#cb15-378"></a>What's the grade-point average for each instructor? Order from low to high.</span>
+<span id="cb15-379"><a href="#cb15-379"></a></span>
+<span id="cb15-382"><a href="#cb15-382"></a><span class="in">```{r}</span></span>
+<span id="cb15-383"><a href="#cb15-383"></a><span class="in">```</span></span>
+<span id="cb15-384"><a href="#cb15-384"></a></span>
+<span id="cb15-385"><a href="#cb15-385"></a><span class="fu">#### Part f {.unnumbered}</span></span>
+<span id="cb15-386"><a href="#cb15-386"></a></span>
+<span id="cb15-387"><a href="#cb15-387"></a>CHALLENGE: Estimate the grade-point average for each department, and sort from low to high. NOTE: Don't include cross-listed courses. Students in cross-listed courses could be enrolled under either department, and we do not know which department to assign the grade to. HINT: You'll need to do multiple joins.</span>
+<span id="cb15-388"><a href="#cb15-388"></a></span>
+<span id="cb15-389"><a href="#cb15-389"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
