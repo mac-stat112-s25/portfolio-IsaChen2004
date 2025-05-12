@@ -1,0 +1,10 @@
+---
+title: "Summary"
+format: html
+---
+
+# Exam 1 Cheat Sheet {.unnumbered}
+![](exam1-1.png)
+![](exam1-2.png)
+# Exam 2 Cheat Sheet {.unnumbered}
+![](exam2.png)

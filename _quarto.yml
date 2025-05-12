@@ -12,6 +12,7 @@ book:
   bread-crumbs: true
   
   
+  
   sidebar:
     title: "Isa Chen"
     collapse-level: 2
@@ -30,6 +31,9 @@ book:
       - bw/bw-tri.qmd
       - bw/bw-quad.qmd
       - bw/bw-spatial.qmd
+      - bw/bw-solo.qmd
+      - bw/summary.qmd
+      
 
     - part: "In-class Activities"
       chapters: 
@@ -37,6 +41,16 @@ book:
       - ica/ica-bi.qmd
       - ica/ica-multi.qmd
       - ica/ica-spatial.qmd
+      - ica/ica-effective.qmd
+      - ica/ica-wrangling.qmd
+      - ica/ica-dates.qmd
+      - ica/ica-reshaping.qmd
+      - ica/ica-joining.qmd
+      - ica/ica-factors.qmd
+      - ica/ica-string.qmd
+      - ica/ica-data.qmd
+      
+
 
 format:
   html:
@@ -54,7 +68,9 @@ format:
 
 execute:
   cache: false
-  freeze: auto
+  echo: false
+  warning: false
+  error: false
 
 editor: 
   markdown:

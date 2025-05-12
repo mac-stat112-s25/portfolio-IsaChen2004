@@ -1,0 +1,73 @@
+---
+title: "Solo Project"
+format: html
+
+---
+
+# Project Overview
+
+This project visualizes the global diversity of cheeses by country using a bubble map. The size and color of each circle represent the number of unique cheese varieties attributed to that country.
+
+## Goal
+
+Apply effective visualization principles:
+ - Simplify gridlines and distractions
+ - Use perceptually uniform color scale
+ - Clear labels and consistent fonts
+ - Provide attribution and interpretation
+
+```{r}
+library(tidyverse)
+library(readr)
+library(maps)
+cheeses <- read_csv("cheeses.csv")
+coords <- read_csv("world_country_and_usa_states_latitude_and_longitude_values.csv")
+
+cheese_country <- cheeses %>%
+  count(country, name = "cheese_count")
+
+cheese_map_data <- left_join(cheese_country, coords, by = "country") %>%
+  filter(!is.na(latitude), !is.na(longitude))
+```
+
+## World Cheese Map
+
+```{r}
+ggplot(cheese_map_data, aes(x = longitude, y = latitude)) +
+  borders("world", colour = "gray60", fill = "gray98") +
+  geom_point(aes(size = cheese_count, color = cheese_count), alpha = 0.85) +
+  scale_color_viridis_c(option = "plasma", name = "Cheese Count") +
+  scale_size_continuous(range = c(2, 12)) +
+  labs(
+    title = "🧀 Cheese Diversity Around the World",
+    subtitle = "Each circle shows the number of unique cheeses per country",
+    x = NULL, y = NULL,
+    caption = "Data: cheeses.csv + country coordinates • Author: Isa"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(face = "bold", size = 20),
+    plot.subtitle = element_text(size = 14),
+    panel.grid = element_blank(),
+    legend.position = "right",
+    legend.title = element_text(face = "bold"),
+    plot.caption = element_text(margin = margin(t = 10), size = 10)
+  )
+```
+
+##  Interpretation
+
+Cheese is more than a food — it’s a cultural expression tied to geography, tradition, and climate. This map illustrates where in the world cheese has become a central part of cuisine and identity.
+
+Countries like **France** and **Italy** appear with large, colorful bubbles, reflecting their deep histories in dairy and fermentation. These regions produce hundreds of distinct varieties, shaped by regional environments and centuries-old recipes.
+
+Meanwhile, other countries like **Switzerland**, **United Kingdom**, and **Greece** also stand out, offering famous cheeses like Emmental, Cheddar, and Feta — each with its own story and significance.
+
+Even countries with fewer known varieties may represent untapped or undocumented traditions. This visualization invites curiosity: what makes a region specialize in cheese? What is missing in areas with little data?
+
+Through visualization, we not only quantify cheese diversity but spark appreciation for how food connects people to place.
+
+##  Data Sources
+
+- `cheeses.csv`: dataset of world cheeses
+- `world_country_and_usa_states_latitude_and_longitude_values.csv`: country coordinates
