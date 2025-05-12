@@ -67,56 +67,56 @@
   {
     "objectID": "bw/bw-solo.html",
     "href": "bw/bw-solo.html",
-    "title": "\n6  bw-solo\n",
+    "title": "\n6  Solo Project\n",
     "section": "",
     "text": "7 🧀 Project Overview\nThis project visualizes the global diversity of cheeses by country using a bubble map. The size and color of each circle represent the number of unique cheese varieties attributed to that country.",
     "crumbs": [
       "Best Work",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>bw-solo</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Solo Project</span>"
     ]
   },
   {
     "objectID": "bw/bw-solo.html#goal",
     "href": "bw/bw-solo.html#goal",
-    "title": "\n6  bw-solo\n",
+    "title": "\n6  Solo Project\n",
     "section": "\n7.1 🔍 Goal",
     "text": "7.1 🔍 Goal\nApply effective visualization principles: - Simplify gridlines and distractions - Use perceptually uniform color scale - Clear labels and consistent fonts - Provide attribution and interpretation",
     "crumbs": [
       "Best Work",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>bw-solo</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Solo Project</span>"
     ]
   },
   {
     "objectID": "bw/bw-solo.html#world-cheese-map",
     "href": "bw/bw-solo.html#world-cheese-map",
-    "title": "\n6  bw-solo\n",
+    "title": "\n6  Solo Project\n",
     "section": "\n7.2 World Cheese Map",
     "text": "7.2 World Cheese Map",
     "crumbs": [
       "Best Work",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>bw-solo</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Solo Project</span>"
     ]
   },
   {
     "objectID": "bw/bw-solo.html#interpretation",
     "href": "bw/bw-solo.html#interpretation",
-    "title": "\n6  bw-solo\n",
+    "title": "\n6  Solo Project\n",
     "section": "\n7.3 Interpretation",
     "text": "7.3 Interpretation\nCheese is more than a food — it’s a cultural expression tied to geography, tradition, and climate. This map illustrates where in the world cheese has become a central part of cuisine and identity.\nCountries like France and Italy appear with large, colorful bubbles, reflecting their deep histories in dairy and fermentation. These regions produce hundreds of distinct varieties, shaped by regional environments and centuries-old recipes.\nMeanwhile, other countries like Switzerland, United Kingdom, and Greece also stand out, offering famous cheeses like Emmental, Cheddar, and Feta — each with its own story and significance.\nEven countries with fewer known varieties may represent untapped or undocumented traditions. This visualization invites curiosity: what makes a region specialize in cheese? What is missing in areas with little data?\nThrough visualization, we not only quantify cheese diversity but spark appreciation for how food connects people to place.",
     "crumbs": [
       "Best Work",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>bw-solo</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Solo Project</span>"
     ]
   },
   {
     "objectID": "bw/bw-solo.html#data-sources",
     "href": "bw/bw-solo.html#data-sources",
-    "title": "\n6  bw-solo\n",
+    "title": "\n6  Solo Project\n",
     "section": "\n7.4 Data Sources",
     "text": "7.4 Data Sources\n\n\ncheeses.csv: dataset of world cheeses\n\nworld_country_and_usa_states_latitude_and_longitude_values.csv: country coordinates",
     "crumbs": [
       "Best Work",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>bw-solo</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Solo Project</span>"
     ]
   },
   {
