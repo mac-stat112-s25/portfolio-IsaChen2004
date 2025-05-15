@@ -8,3 +8,40 @@ format: html
 ![](exam1-2.png)
 # Exam 2 Cheat Sheet {.unnumbered}
 ![](exam2.png)
+# Exam 1 Paper{.unnumbered}
+![](21.png)
+
+![](22.png)
+![](23.png)
+![](24.png)
+![](25.png)
+
+![](26.png)
+
+![](27.png)
+
+![](28.png)
+# Exam 2 Paper{.unnumbered}
+![](29.png)
+
+![](30.png)
+
+![](31.png)
+
+![](32.png)
+
+![](33.png)
+
+![](34.png)
+
+![](35.png)
+
+![](36.png)
+
+![](37.png)
+
+![](38.png)
+
+![](39.png)
+
+![](40.png)
