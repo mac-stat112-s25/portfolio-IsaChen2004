@@ -69,7 +69,18 @@
     "href": "bw/exampaper.html",
     "title": "7  Exam Paper",
     "section": "",
-    "text": "Exam 1 Paper\n\n   \n\n\n # Exam 2 Paper{.unnumbered}",
+    "text": "Exam 1 Paper",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Exam Paper</span>"
+    ]
+  },
+  {
+    "objectID": "bw/exampaper.html#exam-2-paper",
+    "href": "bw/exampaper.html#exam-2-paper",
+    "title": "7  Exam Paper",
+    "section": "Exam 2 Paper",
+    "text": "Exam 2 Paper",
     "crumbs": [
       "Best Work",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Exam Paper</span>"
@@ -80,7 +91,18 @@
     "href": "bw/summary.html",
     "title": "8  Summary",
     "section": "",
-    "text": "Visualization Summary Sheet\n # Wrangling Summary Sheet {.unnumbered}",
+    "text": "Visualization Summary Sheet",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "bw/summary.html#wrangling-summary-sheet",
+    "href": "bw/summary.html#wrangling-summary-sheet",
+    "title": "8  Summary",
+    "section": "Wrangling Summary Sheet",
+    "text": "Wrangling Summary Sheet",
     "crumbs": [
       "Best Work",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Summary</span>"
