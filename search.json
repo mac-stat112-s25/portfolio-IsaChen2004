@@ -67,7 +67,7 @@
   {
     "objectID": "bw/exampaper.html",
     "href": "bw/exampaper.html",
-    "title": "7  Exam Paper",
+    "title": "\n7  Exam Paper\n",
     "section": "",
     "text": "Exam 1 Paper",
     "crumbs": [
@@ -76,11 +76,22 @@
     ]
   },
   {
+    "objectID": "bw/exampaper.html#exam-1-paper",
+    "href": "bw/exampaper.html#exam-1-paper",
+    "title": "\n7  Exam Paper\n",
+    "section": "",
+    "text": "Research Question 1",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Exam Paper</span>"
+    ]
+  },
+  {
     "objectID": "bw/exampaper.html#exam-2-paper",
     "href": "bw/exampaper.html#exam-2-paper",
-    "title": "7  Exam Paper",
+    "title": "\n7  Exam Paper\n",
     "section": "Exam 2 Paper",
-    "text": "Exam 2 Paper",
+    "text": "Exam 2 Paper\n\n\n\n\n\n\n\n\n\n\n\n ### Research Question 1 {.unnumbered}\n\n\n\n\n\n\n\n\nResearch Question 2\n\n\n\n\n\n\n\n\nResearch Question 3",
     "crumbs": [
       "Best Work",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Exam Paper</span>"
